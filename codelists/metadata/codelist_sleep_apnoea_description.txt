@@ -1,0 +1,11 @@
+<<dd_version: 2>>
+<<dd_include: header.txt>>
+
+Description of codelist_sleep_apnoea code lists
+===============================================================
+
+~~~~
+See table 1 in published validation paper
+~~~~
+
+

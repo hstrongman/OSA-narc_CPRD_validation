@@ -1,0 +1,688 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles\codelist_ethnicity_log.txt
+  log type:  text
+ opened on:   7 Aug 2024, 11:19:10
+
+. 
+. /*Notes and instructions for modifying these files: 
+> - The copy command copies the current .txt file from $dodir to $metadir. 
+> - dyndoc creates the HTML file and saves it in $metadir. 
+> - *** ALWAYS MODIFY .txt FILES IN $dodir. ***
+> - The arguments following the dyndoc command are:
+>         database name: `1'
+>         dictionary filepath `2'
+>         CPRD code variable `3'
+>         Original code variable `4'
+> - These arguments can be displayed in the HTML document using
+>         <<dd_display: `x'>> and used as a local within stata commands
+> */
+. 
+. cd "$metadir" 
+J:\EHR-Working\HelenS\22_001887_validation\codelists\metadata
+
+. 
+. 
+. copy "$dodir\codelist_ethnicity_description.txt" ., replace
+
+. 
+. dyndoc "$dodir\codelist_ethnicity_description.txt", ///
+> saving("codelist_ethnicity_description.html") replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+Description of codelist_ethnicity code lists
+===============================================================
+
+~~~~
+This HTML file includes information that is needed to use the 
+ethnicity code lists to define ethnicity
+and to cite the authors. 
+Researchers, refer to codelist_ethnicity.do for instructions
+about modifying this file.
+~~~~
+
+## COVER SHEET
+~~~~
+
+Codelist name: Ethnicity 
+
+Data source(s):
+    - Clinical Practice Research Datalink GOLD (up to September 2023)
+    - Clinical Practice Research Datalink Aurum (up to September 2023)
+	- Note CPRD provide categorised ethnicity data for HES
+
+Terminology(s)
+    - Read Version 2 (GOLD)
+    - SNOMED-CT (and EMIS codes) (Aurum)
+  
+Clinical concept:
+	Ethnicity. The search identifies all codes indicating an individual's
+	ethnicity as conceptualised and defined by the Office of National Statistics.
+	
+	Codes with the following concepts in the read term are included:
+	- codes that specify they refer to ethnicity/ethnic groups or categories
+	-mixed and non-mixed ethnicity codes
+	- codes including terms such as white, black, caucasian, aisian
+	- codes in ethnicity Read chapters that are synonomous with, or represent
+	countries with a largely homogonous ethnic population (e.g. Japanese, Indian)
+	
+	Codes that describe other countries or regions, nationalities or religions 
+	are not included (e.g. England, Europe, British, Christian).
+	
+	The conceptualisation of ethnicity evolves over time and this will need to
+	be reevaluated periodically.
+	
+Files created:
+	- codelist_ethnicity_gold.dta
+	- codelist_ethnicity_aurum.dta
+	- codelist_ethnicity_gold.txt
+	- codelist_ethnicity_aurum.txt
+	
+Author:
+	- Rohini Mathur (created original codes list and strategy)
+	- modified date: 2023-06-09
+version: 1 (first published version on EHR Github page)
+
+
+~~~~
+
+## Version control (more detail)
+
+~~~~
+Date created: 2012
+Author:	Rohini Mathur (Epidemiologist, LSHTM)
+Clinical advisors:
+Liam Smeeth, CPRD team
+
+Date updated: multiple updates including adaptation to Aurum and new
+categorisations of the 2011 and 2021 census
+Author:	Rohini Mathur (Epidemiologist, LSHTM)
+
+
+Date updated: 05/06/2023
+Updated by: Helen Strongman (Epidemiologist, LSHTM)
+(Clinical) advisors: Rohini Mathur
+Changes: created do files to update the original code list with cover sheet
+
+~~~~
+
+~~~~
+## DEFINITION
+Ethnicity codes are grouped as follows using the eth5 and eth16 variables:
+
+
+eth5:
+0 0. White
+1 1. South Asian
+2 2. Black
+3 3. Other
+4 4. Mixed
+5 5. Not Stated
+
+		   
+eth16:
+
+1 1. British
+2 2. Irish
+3 3. Other White
+4 4. White and Black Caribbean
+5 5. White and Black African
+6 6. White and Asian
+7 7. Other Mixed
+8 8. Indian
+9 9. Pakistani
+10 10. Bangladeshi
+11 11. Other Asian
+12 12. Caribbean
+13 13. African
+14 14. Other Black
+15 15. Chinese
+16 16. Other ethnic group
+17 17. Not Stated
+88 88. Unknown
+
+Recommendations to generate ethnicity ?????
+OR refer to another do file.
+
+~~~~
+## STUDIES AND PROTOCOLS
+~~~~
+https://pubmed.ncbi.nlm.nih.gov/24323951/ - ORIGINAL STUDY
+https://researchonline.lshtm.ac.uk/id/eprint/2478832/ - ROHINI'S STUDY CHAPTER 5,
+FLOW DIAGRAM P74 = HOW TO GENERATE ETHNICITY VARIABLE FROM DATA
+
+Note CPRD have validated an ethnicity code list and algorithm.
+The code lists are available in the supplementary appendix but they are not 
+matched to categories.
+Shiekh, S.I., Harley, M., Ghosh, R.E. et al. Completeness, agreement, and 
+representativeness of ethnicity recording in the United Kingdom's Clinical
+Practice Research Datalink (CPRD) and linked Hospital Episode Statistics (HES). 
+Popul Health Metrics 21, 3 (2023). https://doi.org/10.1186/s12963-023-00302-0
+
+~~~~
+successfully converted "J:/EHR-Working/HelenS/22_001887_validation/codelists/metadata/codelist_ethnicity_description.html"
+
+. 
+. copy "$dodir\codelist_ethnicity_derivation.txt" ., replace
+
+. 
+. dyndoc "$dodir\codelist_ethnicity_derivation.txt" ///
+> aurum "$dict_aurummed" medcodeid snomedctconceptid, ///
+> saving("codelist_ethnicity_derivation_aurum.html") replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+Description of how the ethnicity code lists were created
+===============================================================
+
+~~~~
+This HTML file includes the information needed for clinicians
+and researchers to understand how the code lists are derived.
+Researchers can update the code lists following the instructions in
+codelist_ethnicity.do.
+~~~~
+
+
+~~~~
+## SEARCH TO IDENTIFY NEW CODES
+~~~~
+
+
+The following search Read chapters and term strings are applied to all codes in the
+current dictionary. Each chapter or term string is searched for individually
+and flagged (strings may appear in any position in the text. 
+The terms should cover all synonyms for ethnicity (see strategy in code list
+description). Chapter searches only apply to code lists that include
+Read codes; these include CPRD Aurum code lists as a large proportion of Snomed
+codes are matched to Read.
+
+Inclusion terms: ethn british english welsh scottish irish asian indian pakistani  bangladeshi african caribbean
+
+Inclusion chapters: 9S 9i 9t 9T
+
+Exclusion terms: adverse eye flower urine blood blackout adenoma adore cell  country head adverse syndrome veno sigvaris fruit trypanosomiasis poison kit altiven sick religio
+> n algi juzo jobst haddenham gloria read language ovcc exam vari porphyria assoc carer speak test encep trust contracept interpret health operation body church obscure joint
+>  patient refer activity episco type child  member fever skin virus father mother gfr myocard sis risk society orthodox tick buddhis benign born lewis traga citizen cattle a
+> fricanum diet counties stew hindu jewish muslim sikh cattle africanum diet counties stew admin##chapter british##ability lupus vocabulary
+
+
+
+
+~~~~
+## COMPARE WITH PREVIOUS VERSION
+~~~~
+
+. gen _match = 0
+
+. label variable _match "Code list comparison"
+
+. label define _matchlab 1 "Previous code list and search" 2 "Previous list only" 3 "New search only"
+
+. replace _match = 1 if  _inlist == 1 & (_termmarker == 1 | _readmarker == 1)
+(280 real changes made)
+
+. replace _match = 2 if _inlist == 1 & _termmarker == 0 & _readmarker == 0
+(0 real changes made)
+
+. replace _match = 3 if _inlist == 0 & (_termmarker == 1 | _readmarker == 1)
+(223 real changes made)
+
+. assert _match !=0
+
+. label values _match _matchlab
+
+. /*note for next command - twoway tabulations are not clearly displayed 
+> in the HTML document. I've therefore run a simple count instead of tabulating
+> this variable*/
+
+
+Codes from previous code list that are included (and not excluded) in current search
+
+  279
+
+command x is unrecognized
+r(199);
+r(199);
+
+end of do-file
+
+r(199);
+
+. tab _match
+
+         Code list comparison |      Freq.     Percent        Cum.
+------------------------------+-----------------------------------
+Previous code list and search |        280       55.67       55.67
+              New search only |        223       44.33      100.00
+------------------------------+-----------------------------------
+                        Total |        503      100.00
+
+. use "$oldir\codelist_ethnicity_aurum.dta", clear
+file \codelist_ethnicity_aurum.dta not found
+r(601);
+
+. use "$olddir\codelist_ethnicity_aurum.dta", clear
+
+. use "J:\EHR Share\3 Database guidelines and info\CPRD Aurum\Code browsers\2023_12\CPRDAurumMedical.dta"
+
+. merge 1:1 medcodeid using "$oldir\codelist_ethnicity_aurum.dta"
+file \codelist_ethnicity_aurum.dta not found
+r(601);
+
+. merge 1:1 medcodeid using "$olddir\codelist_ethnicity_aurum.dta"
+variable observations is str9 in master but long in using data
+    You could specify merge's force option to ignore this string/numeric mismatch.  The using variable would then be treated as if it contained "".
+r(106);
+
+. merge 1:1 medcodeid using "$olddir\codelist_ethnicity_aurum.dta" force
+invalid 'force' 
+r(198);
+
+. merge 1:1 medcodeid using "$olddir\codelist_ethnicity_aurum.dta", force
+(note: variable observations was long in the using data, but will be str9 now)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       246,838
+        from master                   246,838  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                               280  (_merge==3)
+    -----------------------------------------
+
+. do "J:\EHR-Working\HelenS\22_001887_sleep-chronology\dofiles\0.globals.do"
+
+. 
+. /*********************************************************
+> # Stata do file:    0.globals.do
+> #
+> # Author:      Helen Strongman
+> #
+> # Date:        01/08/2022
+> #
+> # Description: Globals for 22_001887_sleep-chronology project.
+>                                 Designed to allow study to be replicated for different 
+>                                 medical conditions using different filepaths
+> #
+> # Inspired and adapted from: 
+> #                               N/A
+> **********************************************************/
+. 
+. /*Set Stata version number*/
+. version 18 
+
+. 
+. 
+. /**********************************************************
+> # STUDY SPECIFIC GLOBALS
+> **********************************************************/
+. ***CPRD builds / linkage set
+. *SEE CPRD RELEASE NOTES ON THIS BUILD SAVED IN DOCS FOLDER
+. global buildyear "2023"
+
+. global buildmonth "03"
+
+. global buildmonthalph "MAR"
+
+. global linkageset "22"
+
+. 
+. ***Study start and end dates
+. *used in study population denominators up to weekly counts
+. global studystart_primary d(01/01/1990)
+
+. global studyend_primary d(30/04/2022)
+
+. global studystart_linked d(02/01/1998)
+
+. global studyend_linked d(29/03/2021) /*This is the end of HES APC /
+> ONS mortality data coverage (set 22/January 2022)*/
+
+. 
+. 
+. global studystart_hesae d(01/04/2003) /*(set 21/August 2021)*/
+
+. global studyend_hesae d(31/03/2020)
+
+. global studystart_hesop d(01/04/2003) /*(set 21/August 2021)*/
+
+. global studyend_hesop d(30/10/2020)
+
+. 
+. 
+. /**********************************************************
+> # STUDY CONVENTIONS
+> **********************************************************/
+. 
+. /*Abbreviations for file, variable names and locals
+> medcondition (narcolepsy, sleep_apnoea)
+> database (gold, aurum, hesapc)
+> filename suffix (`medcondition'_`database')
+> */
+. 
+. /*formats
+> - format dates as %td
+> - use _prefix for temporary variables and datasets
+> */
+. 
+. 
+. /**********************************************************
+> # ROUTE PATHS
+> **********************************************************/
+. 
+. /*file paths are used throughout. These follow LSHTM's license
+> agreement with CPRD. */
+. 
+. /*Raw and interim data*/
+. *global rawdrivedir "Z:\sec-file-b-volumea\EPH\EHR group\GPRD_GOLD\"
+. global rawdrivedir "Z:/GPRD_GOLD"
+
+. global rawdatadir "$rawdrivedir/HelenS/22_001887_sleep-chronology"
+
+. 
+. /*Analysis data and other files*/
+. *global maindir "C:\Users\encdhstr\Filr\Net Folders\EPH Shared\"
+. global maindir "J:"
+
+. global ehrdir "$maindir/EHR-Working"
+
+. global projectdir "$ehrdir/HelenS/22_001887_sleep-chronology"
+
+. 
+. /*CPRD monthly looksups folder*/
+. global cprddir "$maindir/EHR Share/3 Database guidelines and info"
+
+. 
+. /**********************************************************
+> # PROJECT FOLDER FILEPATHS
+> **********************************************************/
+. 
+. global dodir "$projectdir/dofiles" /*Stata do files*/
+
+. global logdir "$projectdir/logfiles" /*Stata log files*/
+
+. global codedir "$projectdir/codelists/stata" /*Stata code lists - 
+> note code list do files are in the codelists subdirectory*/
+
+. global estimatesdir "$projectdir/estimates" /*raw estimates outputted from Stata
+> commands*/
+
+. global resultdir "$projectdir/results" /*aggregated table/graphs for manuscript 
+> or other outputs*/
+
+. global metadir "$projectdir/metadata" /*markdown output for Github*/
+
+. 
+. /*DATA FILES - Data type definitions are from CPRD multi-study license agreement*/ 
+. global datadir_raw "$rawdatadir/rawdata" /*data as provided by CPRD*/
+
+. global datadir_dm "$rawdatadir/managementdata" /*data management files - 
+> intermediate between `raw data' and `analysis data' - useful for data
+> management. May be required for additional analyses/validation requested*
+> by journal reviewers (subject to RDG approval)*/
+
+. global datadir_an "$rawdatadir/analysisdata" /*dataset including only the
+> variables (exposure(s), outcome(s), covariates) that are justified in the
+> RDG protocol and ready for use in the analysis as outlined in the approved
+> RDG protocol.*/
+
+. 
+. /**********************************************************
+> # CPRD DENOMINATOR FILES AND LOOK-UPS
+> **********************************************************/
+. 
+. /*CPRD provides denominator file and look-ups for each database build and
+> linkage set. These files are requested from CPRD by LSHTM's data managers.
+> Data specifications are available on CPRD's website.*/
+. 
+. 
+. /*DENOMINATOR FILES - this can be requested from CPRD by license holders.*/
+. local denomdir_aurum "$cprddir/CPRD Aurum/Denominator files/${buildyear}_${buildmonth}"
+
+. global denom_aurum "`denomdir_aurum'/${buildyear}${buildmonth}_CPRDAurum_AllPats.dta"
+
+. global practice_aurum "`denomdir_aurum'/${buildyear}${buildmonth}_CPRDAurum_Practices"
+
+. 
+. local denomdir_gold "$cprddir/GPRD_Gold/Denominator files/${buildmonthalph}${buildyear}"
+
+. global denom_gold "`denomdir_gold'/all_patients_${buildmonthalph}${buildyear}.dta"
+
+. global practice_gold "`denomdir_gold'/allpractices_${buildmonthalph}${buildyear}.dta"
+
+. 
+. /*FILE IDENTYING PRACTICES THAT HAVE CONTRIBUTED TO BOTH GOLD AND AURUM*/
+. global visiontoemis "$cprddir/CPRD Aurum/Vision to Emis Migrators/${buildyear}${buildmonth}VisionToEmisMigrators.dta"
+
+. 
+. /*LINKAGE ELIGIBILITY FILE*/
+. local linkagesourcedir "$cprddir/CPRD Linkage Source Data Files/Version${linkageset}/"
+
+. global linkagefile_gold "`linkagesourcedir'/set_${linkageset}_Source_GOLD/linkage_eligibility_new_patids.dta"
+
+. global linkagefile_aurum "`linkagesourcedir'/set_${linkageset}_Source_Aurum/Aurum_enhanced_eligibility_January_2022.dta"
+
+. 
+. /*LOOK-UPS*/
+. global lookupdir_aurum "$cprddir/CPRD Aurum/Lookups/${buildyear}_${buildmonth}"
+
+. global lookupdir_gold "$cprddir/GPRD_Gold/Look up files/Lookups_${buildyear}_${buildmonth}"
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. do "J:\EHR-Working\HelenS\22_001887_validation\dofiles\0.master.do"
+
+. X THIS IS HERE TO STOP ME ACCIDENTALLY RUNNING THE FULL DO FILE
+command X is unrecognized
+r(199);
+
+end of do-file
+
+r(199);
+
+. do "J:\EHR-Working\HelenS\22_001887_validation\dofiles\0.globals.do"
+
+. 
+. /*********************************************************
+> # Stata do file:    0.globals.do
+> #
+> # Author:      Helen Strongman
+> #
+> # Date:        01/08/2022
+> #
+> # Description: Globals for 22_001887_sleep-chronology project.
+>                                 Designed to allow study to be replicated for different 
+>                                 medical conditions using different filepaths
+> #
+> # Inspired and adapted from: 
+> #                               N/A
+> **********************************************************/
+. 
+. /*Set Stata version number*/
+. version 17 
+
+. 
+. 
+. /**********************************************************
+> # STUDY SPECIFIC GLOBALS
+> **********************************************************/
+. ***CPRD builds / linkage set
+. *SEE CPRD RELEASE NOTES ON THIS BUILD SAVED IN DOCS FOLDER
+. global buildyear "2023"
+
+. global buildmonth "09"
+
+. global buildmonthalph "SEP"
+
+. global linkageset "22"
+
+. 
+. ***Study start and end dates
+. *used in study population denominators up to weekly counts
+. global studystart_primary d(01/01/1990)
+
+. global studyend_primary d(30/04/2022)
+
+. global studystart_linked d(02/01/1998)
+
+. global studyend_linked d(29/03/2021) /*This is the end of HES APC /
+> ONS mortality data coverage (set 22/January 2022)*/
+
+. 
+. 
+. /**********************************************************
+> # STUDY CONVENTIONS
+> **********************************************************/
+. 
+. /*Abbreviations for file, variable names and locals
+> medcondition (narcolepsy, sleep_apnoea)
+> database (gold, aurum, hesapc)
+> filename suffix (`medcondition'_`database')
+> */
+. 
+. /*formats
+> - format dates as %td
+> - use _prefix for temporary variables and datasets
+> */
+. 
+. 
+. /**********************************************************
+> # ROUTE PATHS
+> **********************************************************/
+. 
+. /*file paths are used throughout. These follow LSHTM's license
+> agreement with CPRD. */
+. 
+. /*Raw and interim data - saved in extra secure data drive*/
+. *global rawdrivedir "Z:\sec-file-b-volumea\EPH\EHR group\GPRD_GOLD\"
+. global xsecuredrivedir "Z:/GPRD_GOLD"
+
+. global xsecuredatadir "$xsecuredrivedir/HelenS/22_001887_validation"
+
+. global xsecuredatadir_orig "$rawdrivedir/HelenS/22_001887_sleep-chronology/"
+
+. 
+. /*Analysis data and other files*/
+. *global maindir "C:\Users\encdhstr\Filr\Net Folders\EPH Shared\"
+. global maindir "J:"
+
+. global ehrdir "$maindir/EHR-Working"
+
+. global projectdir "$ehrdir/HelenS/22_001887_validation"
+
+. 
+. /*CPRD monthly looksups folder*/
+. global cprddir "$maindir/EHR Share/3 Database guidelines and info"
+
+. 
+. /**********************************************************
+> # PROJECT FOLDER FILEPATHS
+> **********************************************************/
+. 
+. global dodir "$projectdir/dofiles" /*Stata do files*/
+
+. global logdir "$projectdir/logfiles" /*Stata log files*/
+
+. global codedir "$projectdir/codelists/stata" /*Stata code lists - 
+> note code list do files are in the codelists subdirectory*/
+
+. global estimatesdir "$projectdir/estimates" /*raw estimates outputted from Stata
+> commands*/
+
+. global resultdir "$projectdir/results" /*aggregated table/graphs for manuscript 
+> or other outputs*/
+
+. global metadir "$projectdir/metadata" /*markdown output for Github*/
+
+. 
+. 
+. /*DATA FILES - Data type definitions are from CPRD multi-study license agreement*/ 
+. global datadir_raw "$xsecuredatadir/rawdata" /*data as provided by CPRD*/
+
+. global datadir_raw_orig "$xsecuredatadir_orig/rawdata"
+
+. global datadir_dm "$xsecuredatadir/managementdata" /*data management files - 
+> intermediate between `raw data' and `analysis data' - useful for data
+> management. May be required for additional analyses/validation requested*
+> by journal reviewers (subject to RDG approval)*/
+
+. global datadir_an "$projectdir/analysisdata" /*dataset including only the
+> variables (exposure(s), outcome(s), covariates) that are justified in the
+> RDG protocol and ready for use in the analysis as outlined in the approved
+> RDG protocol.*/
+
+. 
+. /**********************************************************
+> # CPRD DENOMINATOR FILES AND LOOK-UPS
+> **********************************************************/
+. 
+. /*CPRD provides denominator file and look-ups for each database build and
+> linkage set. These files are requested from CPRD by LSHTM's data managers.
+> Data specifications are available on CPRD's website.*/
+. 
+. 
+. /*DENOMINATOR FILES - this can be requested from CPRD by license holders.*/
+. local denomdir_aurum "$cprddir/CPRD Aurum/Denominator files/${buildyear}_${buildmonth}"
+
+. global denom_aurum "`denomdir_aurum'/${buildyear}${buildmonth}_CPRDAurum_AllPats.dta"
+
+. global practice_aurum "`denomdir_aurum'/${buildyear}${buildmonth}_CPRDAurum_Practices"
+
+. 
+. local denomdir_gold "$cprddir/GPRD_Gold/Denominator files/${buildmonthalph}${buildyear}"
+
+. global denom_gold "`denomdir_gold'/all_patients_${buildmonthalph}${buildyear}.dta"
+
+. global practice_gold "`denomdir_gold'/allpractices_${buildmonthalph}${buildyear}.dta"
+
+. 
+. /*FILE IDENTYING PRACTICES THAT HAVE CONTRIBUTED TO BOTH GOLD AND AURUM*/
+. global visiontoemis "$cprddir/CPRD Aurum/Vision to Emis Migrators/${buildyear}${buildmonth}VisionToEmisMigrators.dta"
+
+. 
+. /*LINKAGE ELIGIBILITY FILE*/
+. local linkagesourcedir "$cprddir/CPRD Linkage Source Data Files/Version${linkageset}/"
+
+. global linkagefile_gold "`linkagesourcedir'/set_${linkageset}_Source_GOLD/linkage_eligibility_new_patids.dta"
+
+. global linkagefile_aurum "`linkagesourcedir'/set_${linkageset}_Source_Aurum/Aurum_enhanced_eligibility_January_2022.dta"
+
+. 
+. /*LOOK-UPS*/
+. global lookupdir_aurum "$cprddir/CPRD Aurum/Lookups/${buildyear}_${buildmonth}"
+
+. global lookupdir_gold "$cprddir/GPRD_Gold/Look up files/Lookups_${buildyear}_${buildmonth}"
+
+. 
+. 
+. 
+. 
+end of do-file
+
+. do "C:\Users\encdhstr\AppData\Local\Temp\STD5fc_000003.tmp"
+
+. do "$dodir/25a.cr_raw_ethnicity_drefine.do"
+
+. 
+. capture log close

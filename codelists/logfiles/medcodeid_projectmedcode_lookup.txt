@@ -1,0 +1,40 @@
+------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles/medcodeid_projectmedcode_lookup.txt
+  log type:  text
+ opened on:   6 Aug 2024, 13:10:23
+
+. 
+. use medcodeid observations using "$dict_aurummed", clear
+
+. sort obs medcodeid
+
+. gen projectmedcode = _n
+
+. summ projectmedcode, d
+
+                       projectmedcode
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%         2410              1
+ 5%        12050              2
+10%        24100              3       Obs             240,999
+25%        60250              4       Sum of wgt.     240,999
+
+50%       120500                      Mean             120500
+                        Largest       Std. dev.      69570.56
+75%       180750         240996
+90%       216900         240997       Variance       4.84e+09
+95%       228950         240998       Skewness      -3.03e-15
+99%       238590         240999       Kurtosis            1.8
+
+. keep medcodeid projectmedcode
+
+. label variable projectmedcode "Numeric medcode identifier mapped to CPRD's medcodeid"
+
+. save "$datadir_stata/medcodeid_projectmedcode_lookup.dta", replace
+(file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/medcodeid_projectmedcode_lookup.dta not found)
+file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/medcodeid_projectmedcode_lookup.dta saved
+
+. 
+. capture log close

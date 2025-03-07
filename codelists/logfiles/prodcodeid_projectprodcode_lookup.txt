@@ -1,0 +1,38 @@
+------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles/prodcodeid_projectprodcode_lookup.txt
+  log type:  text
+ opened on:   6 Aug 2024, 13:10:34
+
+. 
+. use prodcodeid using "$dict_aurumprod", clear
+
+. sort prodcodeid
+
+. gen projectprodcode = _n
+
+. summ projectprodcode, d
+
+                       projectprodcode
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%          735              1
+ 5%         3675              2
+10%       7349.5              3       Obs              73,490
+25%        18373              4       Sum of wgt.      73,490
+
+50%      36745.5                      Mean            36745.5
+                        Largest       Std. dev.      21214.88
+75%        55118          73487
+90%      66141.5          73488       Variance       4.50e+08
+95%        69816          73489       Skewness       3.87e-17
+99%        72756          73490       Kurtosis            1.8
+
+. label variable projectprodcode "Numeric prodcode identifier mapped to CPRD's prodcodeid"
+
+. save "$datadir_stata/prodcodeid_projectprodcode_lookup.dta", replace
+(file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/prodcodeid_projectprodcode_lookup.dta not found)
+file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/prodcodeid_projectprodcode_lookup.dta saved
+
+. 
+. capture log close

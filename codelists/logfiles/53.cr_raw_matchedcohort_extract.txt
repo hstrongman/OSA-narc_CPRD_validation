@@ -1,0 +1,108 @@
+------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles\53.cr_raw_matchedcohort_extract.txt
+  log type:  text
+ opened on:   6 Aug 2024, 13:11:32
+
+. 
+. /*******************************************************************************
+> # Stata do file:    53.cr_raw_matchedcohort_extract.do
+> #
+> # Author:      Helen Strongman
+> #
+> # Date:       05/08/2024 (adapted from do file from main study, only
+> #                               change = starred out gold and primary care)
+> #
+> # Description:  (1) Check that all files and have been extracted from the CPRD online
+> #                               tools
+> #                               (2) Import all files, format dates, replace medcodeid and prodcodeids
+> #                               with project codes, drop redundant snomed vars and save
+> #                               individual files.
+> #
+> # Requirements: Extract primary care data for the matched cohort from CPRD's
+> #                               on-line tools first
+> #                               
+> # Inspired and adapted from: 
+> #                               N/A     
+> *******************************************************************************/
+. 
+. pause off
+
+. 
+. ***FIRST CHECK THAT ALL FILES HAVE BEEN EXTRACTED FROM THE ONLINE TOOLS
+. 
+. qui foreach medcondition in narcolepsy OSA {
+Z:/GPRD_GOLD/HelenS/22_001887_validation/rawdata/narcolepsy_aurum_linked
+Missing Consultation files: 
+Missing DrugIssue files: 
+Missing Observation files: 
+Missing Patient files: 
+Missing Practice files: 
+Missing Problem files: 
+Missing Staff files: 
+Z:/GPRD_GOLD/HelenS/22_001887_validation/rawdata/OSA_aurum_linked
+Missing Consultation files: 
+Missing DrugIssue files: 
+Missing Observation files: 
+Missing Patient files: 
+Missing Practice files: 
+Missing Problem files: 
+Missing Staff files: 
+
+. 
+. ***NEXT IMPORT AND FORMAT FILES
+. *ONLY THINGS THAT SAVE SPACE
+. *INCLUDING PROJECT SPECIFIC MEDICAL/PRODUCT CODES
+. *DATE VARIABLES
+. *REMOVE EXCESS VARS
+. 
+. qui foreach medcondition in narcolepsy OSA {
+Z:/GPRD_GOLD/HelenS/22_001887_validation/rawdata/narcolepsy_aurum_linked
+narcolepsy_aurum_linked_Extract_Consultation_001.txt
+narcolepsy_aurum_linked_Extract_DrugIssue_001.txt
+narcolepsy_aurum_linked_Extract_Observation_001.txt
+narcolepsy_aurum_linked_Extract_Patient_001.txt
+narcolepsy_aurum_linked_Extract_Practice_001.txt
+narcolepsy_aurum_linked_Extract_Problem_001.txt
+narcolepsy_aurum_linked_Extract_Staff_001.txt
+Z:/GPRD_GOLD/HelenS/22_001887_validation/rawdata/OSA_aurum_linked
+OSA_aurum_linked_Extract_Consultation_001.txt
+OSA_aurum_linked_Extract_Consultation_002.txt
+OSA_aurum_linked_Extract_Consultation_003.txt
+OSA_aurum_linked_Extract_Consultation_004.txt
+OSA_aurum_linked_Extract_DrugIssue_001.txt
+OSA_aurum_linked_Extract_DrugIssue_002.txt
+OSA_aurum_linked_Extract_DrugIssue_003.txt
+OSA_aurum_linked_Extract_DrugIssue_004.txt
+OSA_aurum_linked_Extract_DrugIssue_005.txt
+OSA_aurum_linked_Extract_DrugIssue_006.txt
+OSA_aurum_linked_Extract_DrugIssue_007.txt
+OSA_aurum_linked_Extract_DrugIssue_008.txt
+OSA_aurum_linked_Extract_DrugIssue_009.txt
+OSA_aurum_linked_Extract_DrugIssue_010.txt
+OSA_aurum_linked_Extract_DrugIssue_011.txt
+OSA_aurum_linked_Extract_DrugIssue_012.txt
+OSA_aurum_linked_Extract_DrugIssue_013.txt
+OSA_aurum_linked_Extract_Observation_001.txt
+OSA_aurum_linked_Extract_Observation_002.txt
+OSA_aurum_linked_Extract_Observation_003.txt
+OSA_aurum_linked_Extract_Observation_004.txt
+OSA_aurum_linked_Extract_Observation_005.txt
+OSA_aurum_linked_Extract_Observation_006.txt
+OSA_aurum_linked_Extract_Observation_007.txt
+OSA_aurum_linked_Extract_Observation_008.txt
+OSA_aurum_linked_Extract_Observation_009.txt
+OSA_aurum_linked_Extract_Observation_010.txt
+OSA_aurum_linked_Extract_Observation_011.txt
+OSA_aurum_linked_Extract_Observation_012.txt
+OSA_aurum_linked_Extract_Observation_013.txt
+OSA_aurum_linked_Extract_Observation_014.txt
+OSA_aurum_linked_Extract_Observation_015.txt
+OSA_aurum_linked_Extract_Observation_016.txt
+OSA_aurum_linked_Extract_Patient_001.txt
+OSA_aurum_linked_Extract_Practice_001.txt
+OSA_aurum_linked_Extract_Problem_001.txt
+OSA_aurum_linked_Extract_Staff_001.txt
+
+.         
+. capture log close

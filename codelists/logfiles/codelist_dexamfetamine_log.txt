@@ -1,0 +1,553 @@
+------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles\codelist_dexamfetamine_log.txt
+  log type:  text
+ opened on:   2 Dec 2024, 14:25:53
+
+. 
+. /*Notes and instructions for modifying these files: 
+> - The copy command copies the current .txt file from $dodir to $metadir. 
+> - dyndoc creates the HTML file and saves it in $metadir. 
+> - *** ALWAYS MODIFY .txt FILES IN $dodir. ***
+> - The arguments following the dyndoc command are:
+>         database name: `1'
+>         dictionary filepath `2'
+>         CPRD code variable `3'
+>         Original code variable `4'
+> - These arguments can be displayed in the HTML document using
+>         <<dd_display: `x'>> and used as a local within stata commands
+> */
+. 
+. cd "$metadir" 
+J:\EHR-Working\HelenS\22_001887_validation\codelists\metadata
+
+. 
+. copy "$dodir\codelist_dexamfetamine_description.txt" ., replace
+
+. 
+. dyndoc "$dodir\codelist_dexamfetamine_description.txt", ///
+> saving("codelist_dexamfetamine_description.html") replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+Description of codelist_dexamfetamine code lists
+===============================================================
+
+~~~~
+This HTML file includes information that is needed to define primary care 
+consultations in CPRD data and to cite the authors. 
+Researchers, refer to codelist_cprdconsultations.do for instructions
+about modifying this file.
+~~~~
+
+# COVER SHEET
+
+
+## 0. Metadata
+
+### a. Codelist name 
+
+dexamfetamine
+
+### b. Author(s)
+
+Helen Strongman
+
+### c. Date finalised: 27/11/2024
+
+### d. Target data source(s)
+
+- Clinical Practice Research Datalink GOLD (up to September 2023)
+- Clinical Practice Research Datalink Aurum (up to September 2023)
+
+### e. Terminology(s)
+CPRD Aurum Dictionary of Medicines and Devices (dm+d) mapped to 
+CPRD prodcodeid, 
+CPRD GOLD gemscriptcode mapped to CPRD prodcode
+  
+## 1. Define a clinical concept
+
+### a. Concept
+
+dexamfetamine prescriptions
+	
+### b. Timeframe: 
+	
+no restrictions
+	
+### c. Accuracy:
+
+There is no ambiguity in coding for this code list.
+
+### d. Setting: 
+
+Prescriptions written in primary care
+
+## 2. Search existing codelists
+	
+### a. Sources searched
+
+used google to search for "cprd dexamphetamine" and 
+"cprd dexamfetamine" 
+
+### b. Existing codelists found
+
+https://clinicalcodes.rss.mhs.man.ac.uk/medcodes/article/28/codelist/res28-adhd-prodcodes/
+	
+## 3. Evaluate existing code lists
+
+### a. Verified by others.
+
+no information
+
+### b. Verified by researcher.
+
+codes not split out by drug substance
+
+## 4. Existing code lists used
+
+### a. as above
+
+N/A
+
+
+## 5. Prepare
+
+### a. Synonyms
+
+dexamphetamine sulphate, dexamfetamine sulfate, amfexa, dexedrine =
+modified release (identified by searching BNF chapter "Amfetamines" including
+names in the "medicinal forms" section)
+
+Also included lisdexamfetamine (adderall, durophet) = prodrug of dexamfetamine
+
+## b. Exceptions
+
+
+
+## 6. Create
+
+### a. Method used
+
+Used lower case search terms in a script to search drug substance
+product name, and termfromemis fields - terms recorded anywhere in string. 
+Checked for additional product names to search for by listing product names
+where dexamfetamine was the drug substance
+
+### b. Search terms
+
+inclusion (dexam, amfexa, dexedrine, lisdex, adderall, durophet)
+
+
+### c. Hierachy used to extend the search
+
+None
+
+### d. Decisions made while iterating
+
+added adderall and durophet
+
+### e. Categories
+
+N/A
+
+## 7. Review
+
+### a. Reviewers
+
+need to find a clinician
+
+### b. Scope of review
+
+Both the draft codelist and search and exclusion terms
+were reviewed.
+
+### c. Evidence of review
+
+The process is documented in this HTML file.
+
+## 8. Publish
+
+### a. Codelist published
+
+The codelist will be published on LSHTM data compass and in the Github
+repository for this project, prior to publication of the resulting paper.
+(and in the LSHTM code list Github repository if we can get funding/time to build this)
+
+	
+Files include:
+- codelist_dexamfetamine_aurum.txt
+- codelist_dexamfetamine_aurum.dta
+
+### b. Resources published
+
+Do files and HMTL documents describing codelist and search strategy
+
+
+### Version control (more detail)
+
+## First version
+
+### Date created
+
+02/02/2024
+
+### Author
+
+Helen Strongman (Epidemiologist, LSHTM)
+
+### Clinical advisors
+
+
+## First update
+
+### Date
+
+### Author
+
+### Clinical advisor
+
+### Changes to strategy
+
+~~~~
+
+successfully converted "J:/EHR-Working/HelenS/22_001887_validation/codelists/metadata/codelist_dexamfetamine_description.html"
+
+. 
+. copy "$dodir\codelist_dexamfetamine_derivation.txt" ., replace
+
+. 
+. dyndoc "$dodir\codelist_dexamfetamine_derivation.txt" ///
+> aurum "$dict_aurumprod" prodcodeid dmdid, ///
+> saving("codelist_dexamfetamine_derivation_aurum.html") replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+
+Description of how the dexamfetamine code list was created
+===============================================================
+
+~~~~
+This HTML file includes the information needed for clinicians
+and researchers to understand how the code lists are derived.
+Researchers can update the code lists following the instructions in
+codelist_dexamfetamine.do
+
+~~~~
+## BASIC SEARCH
+~~~~
+
+
+The following search terms are used to generate the initial code lists. Each 
+inclusion term is searched for individually and included or excluded if 
+it appears in any position in the text. BNF chapters are not searched as
+there is no specific chapter for modafinil.
+
+
+Inclusion terms: dexamfe dexamph amfexa dexedrine adderall durophet lisdex elvanse
+
+
+Inclusion BNF chapters: 
+
+
+Exclusion terms: 
+
+
+Exclusion chapters: 
+
+
+
+
+~~~~
+## CODE LIST SPECIFIC SEARCH CRITERIA
+~~~~
+
+There are no code list specific algorithms for dexamfetamine.
+
+~~~~
+## CHECK EXCLUDED CODES
+~~~~
+
+The following list includes all codes that have been excluded from the code
+list. This should be checked carefully.
+
+
+
+
+~~~~
+## CHECK INCLUDED CODES
+~~~~
+
+
+              drugsubstancename                                                          productname                                                  
+>        termfromemis  
+          Dexamfetamine sulfate                                                Dexedrine 5mg tablets         Dexedrine 5mg tablets (Auden McKenzie (Ph
+> arma Division) Ltd)  
+          Dexamfetamine sulfate                                             Dexedrine 15mg Spansules                  Dexedrine 15mg Spansules (Import
+> ed (United States))  
+          Dexamfetamine sulfate                         Dexamfetamine 15mg modified-release capsules                         Dexamfetamine 15mg modifi
+> ed-release capsules  
+          Dexamfetamine sulfate                                            Dexamfetamine 5mg tablets                                            Dexamf
+> etamine 5mg tablets  
+          Dexamfetamine sulfate                                  Dexamfetamine 5mg/5ml oral solution                                  Dexamfetamine 5m
+> g/5ml oral solution  
+      Amfetamine/ Dexamfetamine         Amfetamine 5mg / Dexamfetamine 5mg modified-release capsules         Amfetamine 5mg / Dexamfetamine 5mg modifi
+> ed-release capsules  
+      Amfetamine/ Dexamfetamine       Amfetamine 10mg / Dexamfetamine 10mg modified-release capsules       Amfetamine 10mg / Dexamfetamine 10mg modifi
+> ed-release capsules  
+      Amfetamine/ Dexamfetamine   Amfetamine 12.5mg / Dexamfetamine 12.5mg modified-release capsules   Amfetamine 12.5mg / Dexamfetamine 12.5mg modifi
+> ed-release capsules  
+      Amfetamine/ Dexamfetamine       Amfetamine 15mg / Dexamfetamine 15mg modified-release capsules       Amfetamine 15mg / Dexamfetamine 15mg modifi
+> ed-release capsules  
+      Amfetamine/ Dexamfetamine     Amfetamine 2.5mg / Dexamfetamine 2.5mg modified-release capsules     Amfetamine 2.5mg / Dexamfetamine 2.5mg modifi
+> ed-release capsules  
+      Amfetamine/ Dexamfetamine                                             Adderall XR 5mg capsules                  Adderall XR 5mg capsules (Import
+> ed (United States))  
+      Amfetamine/ Dexamfetamine                                            Adderall XR 30mg capsules                 Adderall XR 30mg capsules (Import
+> ed (United States))  
+      Amfetamine/ Dexamfetamine                                            Adderall XR 25mg capsules                 Adderall XR 25mg capsules (Import
+> ed (United States))  
+      Amfetamine/ Dexamfetamine                                            Adderall XR 20mg capsules                 Adderall XR 20mg capsules (Import
+> ed (United States))  
+      Amfetamine/ Dexamfetamine                                            Adderall XR 15mg capsules                 Adderall XR 15mg capsules (Import
+> ed (United States))  
+      Amfetamine/ Dexamfetamine                                            Adderall XR 10mg capsules                 Adderall XR 10mg capsules (Import
+> ed (United States))  
+          Dexamfetamine sulfate                                Dexamfetamine 5mg/5ml oral suspension                                Dexamfetamine 5mg/
+> 5ml oral suspension  
+                                                                                                                                           Lisdexamfet
+> amine 30mg capsules  
+                                                                                                                                           Lisdexamfet
+> amine 50mg capsules  
+                                                                                                                                           Lisdexamfet
+> amine 70mg capsules  
+    Lisdexamfetamine dimesylate                                                Elvanse 30mg capsules                                Elvanse 30mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                                Elvanse 50mg capsules                                Elvanse 50mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                                Elvanse 70mg capsules                                Elvanse 70mg capsu
+> les (Takeda UK Ltd)  
+          Dexamfetamine sulfate                       Dexamfetamine 5mg/5ml oral solution sugar free                       Dexamfetamine 5mg/5ml oral 
+> solution sugar free  
+    Lisdexamfetamine dimesylate                                          Elvanse Adult 30mg capsules                          Elvanse Adult 30mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                          Elvanse Adult 50mg capsules                          Elvanse Adult 50mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                          Elvanse Adult 70mg capsules                          Elvanse Adult 70mg capsu
+> les (Takeda UK Ltd)  
+          Dexamfetamine sulfate                                                   Amfexa 5mg tablets                                   Amfexa 5mg tabl
+> ets (Medice UK Ltd)  
+                                                                                                                                           Lisdexamfet
+> amine 20mg capsules  
+                                                                                                                                           Lisdexamfet
+> amine 40mg capsules  
+                                                                                                                                           Lisdexamfet
+> amine 60mg capsules  
+    Lisdexamfetamine dimesylate                                                Elvanse 20mg capsules                                Elvanse 20mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                                Elvanse 40mg capsules                                Elvanse 40mg capsu
+> les (Takeda UK Ltd)  
+    Lisdexamfetamine dimesylate                                                Elvanse 60mg capsules                                Elvanse 60mg capsu
+> les (Takeda UK Ltd)  
+          Dexamfetamine sulfate                                           Dexamfetamine 10mg tablets                                           Dexamfe
+> tamine 10mg tablets  
+          Dexamfetamine sulfate                                           Dexamfetamine 20mg tablets                                           Dexamfe
+> tamine 20mg tablets  
+          Dexamfetamine sulfate                                                  Amfexa 20mg tablets                                  Amfexa 20mg tabl
+> ets (Medice UK Ltd)  
+          Dexamfetamine sulfate                                                  Amfexa 10mg tablets                                  Amfexa 10mg tabl
+> ets (Medice UK Ltd)  
+
+
+|  BNFChapter |      Freq. |    Percent |       Cum.|
+|-------------|------------|------------|-----------|
+|             |         26 |      68.42 |      68.42|
+|04040000     |         12 |      31.58 |     100.00|
+|Total        |         38 |     100.00 |           |
+
+
+~~~~
+## Compare with previous version
+~~~~
+
+There are no code lists to compare at this stage.
+
+
+
+
+
+
+
+
+
+
+successfully converted "J:/EHR-Working/HelenS/22_001887_validation/codelists/metadata/codelist_dexamfetamine_derivation_aurum.html"
+
+. 
+. dyndoc "$dodir\codelist_dexamfetamine_derivation.txt" ///
+> gold "$dict_goldprod" prodcode gemscriptcode, ///
+> saving("codelist_dexamfetamine_derivation_gold.html") replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+
+Description of how the dexamfetamine code list was created
+===============================================================
+
+~~~~
+This HTML file includes the information needed for clinicians
+and researchers to understand how the code lists are derived.
+Researchers can update the code lists following the instructions in
+codelist_dexamfetamine.do
+
+~~~~
+## BASIC SEARCH
+~~~~
+
+
+The following search terms are used to generate the initial code lists. Each 
+inclusion term is searched for individually and included or excluded if 
+it appears in any position in the text. BNF chapters are not searched as
+there is no specific chapter for modafinil.
+
+
+Inclusion terms: dexamfe dexamph amfexa dexedrine adderall durophet lisdex elvanse
+
+
+Inclusion BNF chapters: 
+
+
+Exclusion terms: 
+
+
+Exclusion chapters: 
+
+
+
+
+~~~~
+## CODE LIST SPECIFIC SEARCH CRITERIA
+~~~~
+
+There are no code list specific algorithms for dexamfetamine.
+
+~~~~
+## CHECK EXCLUDED CODES
+~~~~
+
+The following list includes all codes that have been excluded from the code
+list. This should be checked carefully.
+
+
+
+
+~~~~
+## CHECK INCLUDED CODES
+~~~~
+
+
+                    drugsubstancename                                                              productname   termfr~s  
+          Lisdexamfetamine dimesylate                                    Elvanse 40mg capsules (Takeda UK Ltd)             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 30mg capsules             
+             Dexamfetamine/Amfetamine                     Adderall XR 20mg capsules (Imported (United States))             
+                Dexamfetamine sulfate                      Dexedrine 15mg Spansules (Imported (United States))             
+                Dexamfetamine sulfate                             Dexamfetamine 10mg modified-release capsules             
+          Lisdexamfetamine dimesylate                              Elvanse Adult 30mg capsules (Takeda UK Ltd)             
+                Dexamfetamine sulfate                                  Dexamfetamine 2.5mg/5ml oral suspension             
+    Amfetamine/Dexamfetamine Sulphate                             Durophet 12.5mg Capsule (3M Health Care Ltd)             
+    Amfetamine/Dexamfetamine Sulphate                    Dexamfetamine with amfetamine 10mg with 10mg capsules             
+                                                                                   DEXAMPHETAMINE SULPHATE TAB             
+                Dexamfetamine sulfate                                               Dexamfetamine 10mg tablets             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 60mg capsules             
+                Dexamfetamine sulfate             Dexedrine 5mg tablets (Auden McKenzie (Pharma Division) Ltd)             
+             Dexamfetamine/Amfetamine           Amfetamine 10mg / Dexamfetamine 10mg modified-release capsules             
+          Lisdexamfetamine dimesylate                        Elvanse 30mg capsules (Shire Pharmaceuticals Ltd)             
+          Lisdexamfetamine dimesylate                                    Elvanse 50mg capsules (Takeda UK Ltd)             
+                Dexamfetamine sulfate                           Dexamfetamine 5mg/5ml oral solution sugar free             
+                                                                             DEXAMPHETAMINE SULPHATE 15 MG CAP             
+                                                                             DEXAMPHETAMINE SULPHATE 10 MG CAP             
+          Lisdexamfetamine dimesylate                                    Elvanse 30mg capsules (Takeda UK Ltd)             
+             Amfetamine/Dexamfetamine                     Adderall XR 10mg capsules (Imported (United States))             
+          Lisdexamfetamine dimesylate                              Elvanse Adult 70mg capsules (Takeda UK Ltd)             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 20mg capsules             
+                Dexamfetamine sulfate                                   Amfexa 10mg tablets (Flynn Pharma Ltd)             
+                                                                             DEXAMPHETAMINE SULPHATE 15 MG SPA             
+                Dexamfetamine sulfate                                    Dexamfetamine 5mg/5ml oral suspension             
+    Amfetamine/Dexamfetamine Sulphate   Dexamfetamine with amfetamine 10mg with 10mg modified-release capsules             
+          Lisdexamfetamine dimesylate                                    Elvanse 70mg capsules (Takeda UK Ltd)             
+          Lisdexamfetamine dimesylate                              Elvanse Adult 50mg capsules (Takeda UK Ltd)             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 50mg capsules             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 40mg capsules             
+                                                                 DEXAMPHETAMINE SULPHATE/AMPHETAMINE 20 MG CAP             
+                Dexamfetamine sulfate                       Dexedrine 5mg Spansules (Imported (United States))             
+                                                                              DEXAMPHETAMINE SULPHATE 5 MG TAB             
+                Dexamfetamine sulfate                             Dexamfetamine 15mg modified-release capsules             
+    Amfetamine/Dexamfetamine Sulphate                              Durophet 7.5mg Capsule (3M Health Care Ltd)             
+                Dexamfetamine sulfate                                                Dexamfetamine 5mg tablets             
+                                                                                          DEXEDRINE 2.5 MG TAB             
+               Dexamfetamine Sulphate                             Dexamfetamine 15mg modified-release capsules             
+             Amfetamine/Dexamfetamine                     Adderall XR 15mg capsules (Imported (United States))             
+          Lisdexamfetamine dimesylate                                           Lisdexamfetamine 70mg capsules             
+          Lisdexamfetamine dimesylate                                    Elvanse 60mg capsules (Takeda UK Ltd)             
+                                                                                                     DEXEDRINE             
+          Lisdexamfetamine dimesylate                                    Elvanse 20mg capsules (Takeda UK Ltd)             
+                Dexamfetamine sulfate                                    Amfexa 5mg tablets (Flynn Pharma Ltd)             
+                Dexamfetamine sulfate                                      Dexamfetamine 5mg/5ml oral solution             
+               Dexamfetamine Sulphate                                         Dexamfetamine 1mg/ml oral liquid             
+                Dexamfetamine sulfate                                   Amfexa 20mg tablets (Flynn Pharma Ltd)             
+                Dexamfetamine sulfate                                               Dexamfetamine 20mg tablets             
+                Dexamfetamine sulfate                              Dexamfetamine 5mg modified-release capsules             
+    Amfetamine/Dexamfetamine Sulphate                               Durophet 20mg Capsule (3M Health Care Ltd)             
+
+
+|                                                              bnfchapter |      Freq. |    Percent |       Cum.|
+|-------------------------------------------------------------------------|------------|------------|-----------|
+|00000000                                                                 |          8 |      15.69 |      15.69|
+|04040000                                                                 |         43 |      84.31 |     100.00|
+|Total                                                                    |         51 |     100.00 |           |
+
+
+~~~~
+## Compare with previous version
+~~~~
+
+There are no code lists to compare at this stage.
+
+
+
+
+
+
+
+
+
+
+successfully converted "J:/EHR-Working/HelenS/22_001887_validation/codelists/metadata/codelist_dexamfetamine_derivation_gold.html"
+
+. 
+. 
+. capture log close

@@ -1,0 +1,57 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  J:\EHR-Working\\HelenS\22_001887_validation\codelists\logfiles/codelist_bmi_ethnicity.txt
+  log type:  text
+ opened on:  14 Aug 2024, 10:15:06
+
+. 
+. use "$olddir/codelist_bmi_aurum.dta", clear
+
+. drop projectmedcode
+
+. merge 1:1 medcodeid using "$datadir_stata/medcodeid_projectmedcode_lookup.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,857
+        from master                         0  (_merge==1)
+        from using                    240,857  (_merge==2)
+
+    Matched                               142  (_merge==3)
+    -----------------------------------------
+
+. keep if _merge == 3
+(240,857 observations deleted)
+
+. drop _merge
+
+. save "$datadir_stata/codelist_bmi_aurum.dta", replace
+file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/codelist_bmi_aurum.dta saved
+
+. 
+. use "$olddir/codelist_ethnicity_aurum.dta", clear
+
+. drop projectmedcode
+
+. merge 1:1 medcodeid using "$datadir_stata/medcodeid_projectmedcode_lookup.dta"
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       240,719
+        from master                         0  (_merge==1)
+        from using                    240,719  (_merge==2)
+
+    Matched                               280  (_merge==3)
+    -----------------------------------------
+
+. keep if _merge == 3
+(240,719 observations deleted)
+
+. drop _merge
+
+. save "$datadir_stata/codelist_ethnicity_aurum.dta", replace
+file J:\EHR-Working\\HelenS\22_001887_validation\codelists\stata/codelist_ethnicity_aurum.dta saved
+
+. 
+. 
+. capture log close
