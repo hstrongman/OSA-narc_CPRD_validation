@@ -8,7 +8,8 @@ log using "$logdir\v6.an_table1.txt", replace text
 #
 # Author:      Helen Strongman
 #
-# Date:       20/08/2024
+# Date:       20/08/2024. Updated 21/07/2024 to count people in the validation
+#				cohort in both cohorts
 #
 # Description: Descriptive table describing composition of incident and validation
 #				cohorts
@@ -27,30 +28,28 @@ read in data
 ***read in cohort file
 *narcolepsy first to retain value labels for age that include children
 use "$datadir_an/37a.cr_unmatchedcohort_stsplit_allvars_narcolepsy_linked.dta", clear
-
 gen medcondition = "narcolepsy"
-
 append using "$datadir_an/37a.cr_unmatchedcohort_stsplit_allvars_OSA_linked.dta"
-
 replace medcondition = "OSA" if medcondition == ""
 
-merge m:1 patid using "$datadir_dm/v2.cr_formatted_validation_data.dta"
-
+*flag validation study cohort
+merge 1:1 patid medcondition using "$datadir_dm/v2.cr_formatted_validation_data.dta", keepusing(patid)
 assert _merge !=2
+gen _validation = 1 if _merge ==3
+drop _merge
 
-gen validation = 0 if _merge == 1
+/*duplicate rows for validation cohort - members should be included in both the
+validation and incident cohort*/
+expand 2 if _validation == 1, gen(_expand)
+replace _validation = 0 if _expand == 0
 
-replace validation = 1 if _merge == 3
-
-*create exposed variable to mirror format of a cohort study table 1
 gen exposed = .
-replace exposed = 0 if medcondition == "OSA"
-replace exposed = 1 if medcondition == "OSA" & validation == 1
-replace exposed = 2 if medcondition == "narcolepsy"
-replace exposed = 3 if medcondition == "narcolepsy" & validation == 1
 label define exposedlab 0 "OSA incident cohort" 1 "OSA validation sample" 2 "narcolepsy incident cohort" 3 "narcolepsy validation sample"
 label values exposed exposedlab
-
+replace exposed = 0 if medcondition == "OSA" & _validation == 0
+replace exposed = 1 if medcondition == "OSA" & _validation == 1
+replace exposed = 2 if medcondition == "narcolepsy" & _validation == 0
+replace exposed = 3 if medcondition == "narcolepsy" & _validation == 1
 tab exposed, m
 
 /*******************************************************************************
